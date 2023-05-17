@@ -1,7 +1,7 @@
 "use client";
 import { ChangeEvent, FormEvent, useState } from 'react';
 import './page.css';
-import authService from "@/services/authService";
+import userService from "@/services/userService";
 import Link from "next/link";
 
 const LoginPage = () => {
@@ -20,7 +20,7 @@ const LoginPage = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await authService.login(email, password);
+            const response = await userService.login(email, password);
             console.log('Response:', response);
         } catch (error) {
             console.error('Error:', error);
