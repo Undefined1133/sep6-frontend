@@ -10,6 +10,9 @@ export default function Home() {
           <Link href="/register">
               Register
           </Link>
+          <Link href="/movies">
+              Movies
+          </Link>
       </div>
     </main>
   )
