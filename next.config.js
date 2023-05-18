@@ -1,14 +1,16 @@
-/** @type {import('next').NextConfig} */
 const fs = require('fs');
-
-
 const dotenv = require('dotenv');
 
-const env = dotenv.parse(fs.readFileSync('.env'));
+let env = {};
+
+if (fs.existsSync('.env')) {
+    const envConfig = dotenv.parse(fs.readFileSync('.env'));
+    env = envConfig;
+}
 
 const nextConfig = {
     reactStrictMode: true,
-    env: env
-}
+    env,
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
