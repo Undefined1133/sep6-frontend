@@ -12,7 +12,6 @@ const MoviesPage = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            // Use "use client" or any asynchronous data-fetching mechanism here
             const fetchedMovies = await movieService.getMostPopularMovies();
             setTop20Movies(fetchedMovies);
             setMovies(fetchedMovies);
