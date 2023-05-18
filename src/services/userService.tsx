@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-class AuthService {
+class UserService {
     async login(email: string, password: string) {
         try {
             const response = await axios.get(`${process.env.DB_API}/user/login/${email}/${password}`);
@@ -22,5 +22,5 @@ class AuthService {
     }
 }
 
-const authService = new AuthService();
-export default authService;
+const userService = new UserService();
+export default userService;
