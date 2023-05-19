@@ -1,5 +1,5 @@
 .container {
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -9,7 +9,7 @@
 }
 
 .back-button {
-    position: absolute;
+    position: fixed;
     top: 20px;
     left: 20px;
     color: #333;
@@ -21,12 +21,52 @@
     display: grid;
     grid-template-columns: auto 1fr;
     grid-gap: 20px;
-    background-color: #ffffff;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 20px;
 }
+
+.stars-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stars-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.star-item {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    font-size: 14px;
+    width: 200px; /* Set a fixed width for each star-item */
+
+}
+
+.star-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 5px;
+}
+
+.star-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 .movie-image {
     justify-self: start;
@@ -39,7 +79,7 @@
 }
 
 .movie-info {
-    display: flex;
+    display: grid;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
