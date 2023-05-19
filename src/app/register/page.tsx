@@ -33,11 +33,6 @@ const LoginPage = () => {
         }
     };
 
-    const handleGoBack = () => {
-        return <Link href="/">
-        </Link>
-    };
-
     return (
         <div className="container">
             <Link href="/" className="back-button">{"< Back"}</Link>
