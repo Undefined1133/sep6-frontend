@@ -2,6 +2,7 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import './page.css';
 import movieService from "@/services/movieService";
+import Link from "next/link";
 
 const MoviesPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -24,7 +25,7 @@ const MoviesPage = () => {
         if(searchTerm.length == 0){
             setMovies(top20Movies);
         }else {
-            movieService.get5MoviesByName(searchTerm).then(result => {
+            movieService.getMoviesByName(searchTerm).then(result => {
                 console.log(result);
                 setMovies(result);
             })
@@ -47,10 +48,13 @@ const MoviesPage = () => {
             </div>
             <div className="movies-grid">
                 {movies.map(movie => (
-                    <div key={movie.id} className="movie-item">
-                        <img src={"https://image.tmdb.org/t/p/original/" + movie.poster_path} alt={movie.title} />
-                        <h3 className="movie-title">{movie.title}</h3>
-                    </div>
+                    <Link href={`/movies/[movieId]`} as={`/movies/${movie.id}`} key={movie.id}>
+                        {/* Replace the <a> tag with a <div> or another suitable element */}
+                        <div className="movie-item">
+                            <img src={"https://image.tmdb.org/t/p/original/" + movie.poster_path} alt={movie.title} />
+                            <h3 className="movie-title">{movie.title}</h3>
+                        </div>
+                    </Link>
                 ))}
             </div>
         </div>

@@ -21,13 +21,23 @@ class MovieService {
         }
     }
 
-    async get5MoviesByName(name: string) {
+    async getMoviesByName(name: string) {
         try {
             const response = await axios.get(`${process.env.DB_API}/movie/get5MoviesBySearch/${name}`);
 
             return response.data;
         } catch (error) {
             throw new Error(`Fetching 5 movies by name: ${name} failed`);
+        }
+    }
+
+    async getMovieById(id: number) {
+        try {
+            const response = await axios.get(`${process.env.DB_API}/movie/getMovie/${id}`);
+
+            return response.data;
+        } catch (error) {
+            throw new Error(`Fetching movie by id: ${id} failed`);
         }
     }
 }
