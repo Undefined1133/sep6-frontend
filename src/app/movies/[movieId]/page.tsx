@@ -49,10 +49,19 @@ const page: FC<PageProps> = ({params}) => {
                 {actors ? (
                     <ul className="stars-list">
                         {actors.map((actor) => (
-                            <li className="star-item" key={actor.id}>
-                                <img src={"https://image.tmdb.org/t/p/original/" + actor.profile_path} alt={actor.name} />
-                                <span className="star-name">{actor.name}</span>
-                            </li>
+                                <li className="star-item" key={actor.id}>
+                                    {actor.profile_path ? (
+                                        <>
+                                            <img src={"https://image.tmdb.org/t/p/original/" + actor.profile_path} alt={actor.name} />
+                                            <span className="star-name">{actor.name}</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                             <img src={"/default_pfp.png"} alt={actor.name}/>
+                                            <span className="star-name">{actor.name}</span>
+                                        </>
+                                    )}
+                                </li>
                         ))}
                     </ul>
                 ) : (
