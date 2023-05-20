@@ -50,6 +50,17 @@ class MovieService {
             throw new Error(`Fetching actors by id: ${id} failed`);
         }
     }
+
+    async getActorById(id: number) {
+        try {
+            const response = await axios.get(`${process.env.DB_API}/movie/getActorsById/${id}`);
+
+            return response.data;
+        } catch (error) {
+            throw new Error(`Fetching actors by id: ${id} failed`);
+        }
+    }
+
 }
 
 const movieService = new MovieService();

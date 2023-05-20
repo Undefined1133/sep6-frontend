@@ -49,6 +49,7 @@ const page: FC<PageProps> = ({params}) => {
                 {actors ? (
                     <ul className="stars-list">
                         {actors.map((actor) => (
+                            <Link href={`/actors/[actorId]`} as={`/actors/${actor.id}`} key={actor.id}>
                                 <li className="star-item" key={actor.id}>
                                     {actor.profile_path ? (
                                         <>
@@ -62,6 +63,7 @@ const page: FC<PageProps> = ({params}) => {
                                         </>
                                     )}
                                 </li>
+                            </Link>
                         ))}
                     </ul>
                 ) : (
