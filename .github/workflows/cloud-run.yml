@@ -2,9 +2,9 @@ name: sep6-frontend
 
 on:
   push:
-    branches:
-      - master
-      - main
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 env:
   PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_NAME }}
