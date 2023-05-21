@@ -4,7 +4,7 @@ import movieService from "@/services/movieService";
 import './page.css';
 import Link from "next/link";
 
-const page: FC<PageProps> = ({params}) => {
+const page: FC<MoviePageProps> = ({params}) => {
     const [selectedMovie, setSelectedMovie] = useState<IMovie | undefined>();
     const [actors, setActors] = useState<IActor[] | undefined>([])
 
@@ -53,12 +53,13 @@ const page: FC<PageProps> = ({params}) => {
                                 <li className="star-item" key={actor.id}>
                                     {actor.profile_path ? (
                                         <>
-                                            <img src={"https://image.tmdb.org/t/p/original/" + actor.profile_path} alt={actor.name} />
+                                            <img src={"https://image.tmdb.org/t/p/original/" + actor.profile_path}
+                                                 alt={actor.name}/>
                                             <span className="star-name">{actor.name}</span>
                                         </>
                                     ) : (
                                         <>
-                                             <img src={"/default_pfp.png"} alt={actor.name}/>
+                                            <img src={"/default_pfp.png"} alt={actor.name}/>
                                             <span className="star-name">{actor.name}</span>
                                         </>
                                     )}

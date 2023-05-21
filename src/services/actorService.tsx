@@ -12,6 +12,16 @@ class ActorService {
         }
     }
 
+    async getMoviesByActorId(id: number) {
+        try {
+            const response = await axios.get(`${process.env.DB_API}/actor/getMoviesByActorId/${id}`);
+
+            return response.data;
+        } catch (error) {
+            throw new Error(`Fetching movies by actorId: ${id} failed`);
+        }
+    }
+
 }
 
 const actorService = new ActorService();
