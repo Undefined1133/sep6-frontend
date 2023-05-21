@@ -26,7 +26,6 @@ const MoviesPage = () => {
             setMovies(top20Movies);
         }else {
             movieService.getMoviesByName(searchTerm).then(result => {
-                console.log(result);
                 setMovies(result);
             })
         }
@@ -36,7 +35,6 @@ const MoviesPage = () => {
 
     return (
         <div className="movies-container">
-            <h1>Movies</h1>
             <div className="search-bar">
                 <input
                     type="text"
@@ -50,9 +48,13 @@ const MoviesPage = () => {
                 {movies.map(movie => (
                     <Link href={`/movies/[movieId]`} as={`/movies/${movie.id}`} key={movie.id}>
                         {/* Replace the <a> tag with a <div> or another suitable element */}
-                        <div className="movie-item">
-                            <img src={"https://image.tmdb.org/t/p/original/" + movie.poster_path} alt={movie.title} />
-                            <h3 className="movie-title">{movie.title}</h3>
+                        <div className="movies-item">
+                            {movie.poster_path ? (
+                                <img src={"https://image.tmdb.org/t/p/original/" + movie.poster_path} alt={movie.title}/>
+                            ) : (
+                                <img src={"/default-movie-poster.png"} alt={movie.title}/>
+                            )}
+                            <h3 className="movies-title">{movie.title}</h3>
                         </div>
                     </Link>
                 ))}

@@ -1,11 +1,12 @@
-.container {
+.selected-actor-container {
     display: block;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     width: 100%;
-    background-color: #f1f1f1;
+    background-color: #D3D3D3;
     position: relative;
+    margin-top: 100px;
 }
 
 .back-button {
@@ -28,7 +29,7 @@
 }
 
 
-.movies-list {
+.starred-movies-list {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -36,30 +37,38 @@
     margin: 0;
 }
 
-.movie-item {
+.starred-movies-container h3 {
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+    margin-top: 10px; /* Add a margin-top for spacing */
+}
+
+.starred-movie-item {
     display: flex;
     align-items: center;
     margin-right: 10px;
     margin-bottom: 10px;
     padding: 5px 10px;
     border-radius: 4px;
-    background-color: #f1f1f1;
+    background-color: #D3D3D3;
     font-size: 14px;
-    width: 200px;
-
+    width: 240px;
 }
 
-.movie-item img {
+.starred-movie-item img {
+    min-width: 100px;
     width: 100px;
     height: 100px;
     object-fit: cover;
     margin-right: 5px;
 }
 
-.star-name {
+.starred-movie-title {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
 }
 
 
@@ -78,7 +87,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    max-width: 400px;
+    max-width: 100%;
 }
 
 .actor-info h2 {

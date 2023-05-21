@@ -1,0 +1,12 @@
+.header {
+    padding: 25px 0;
+    /* text-align: center; */
+    background: #B1A7A6;
+    position: fixed; /* or position: absolute; */
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.header img {
+    width: 100px;
+}
