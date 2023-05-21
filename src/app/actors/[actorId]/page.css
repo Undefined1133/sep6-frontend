@@ -45,7 +45,7 @@
     border-radius: 4px;
     background-color: #f1f1f1;
     font-size: 14px;
-    width: 200px; /* Set a fixed width for each star-item */
+    width: 200px;
 
 }
 
@@ -78,7 +78,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    max-width: 400px; /* Add max-width to limit the width of the container */
+    max-width: 400px;
 }
 
 .actor-info h2 {
