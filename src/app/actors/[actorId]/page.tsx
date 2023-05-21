@@ -21,7 +21,7 @@ const page: FC<ActorPageProps> = ({params}) => {
         fetchData().then(r => console.log(r));
     }, []);
 
-    return <div className="container">
+    return <div className="selected-actor-container">
         <Link href="/" className="back-button">{"< Back"}</Link>
         <div className="actor-details-container">
             {selectedActor ? (
@@ -50,23 +50,23 @@ const page: FC<ActorPageProps> = ({params}) => {
                 <p>Loading...</p>
             )}
         </div>
-        <div className="movies-container">
+        <div className="starred-movies-container">
             <h3>Starring Movies:</h3>
             {movies ? (
-                <ul className="movies-list">
+                <ul className="starred-movies-list">
                     {movies.map(movie => (
                         <Link href={`/movies/[movieId]`} as={`/movies/${movie.id}`} key={movie.id}>
-                            <li className="movie-item" key={movie.id}>
+                            <li className="starred-movie-item" key={movie.id}>
                                 {movie.poster_path ? (
                                     <>
                                         <img src={"https://image.tmdb.org/t/p/original/" + movie.poster_path}
                                              alt={movie.title}/>
-                                        <h3 className="movie-title">{movie.title}</h3>
+                                        <h3 className="starred-movie-title">{movie.title}</h3>
                                     </>
                                 ) : (
                                     <>
                                         <img src={"/default-movie-poster.png"} alt={movie.title}/>
-                                        <h3 className="movie-title">{movie.title}</h3>
+                                        <h3 className="starred-movie-title">{movie.title}</h3>
                                     </>
                                 )}
                             </li>

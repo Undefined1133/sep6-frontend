@@ -3,10 +3,12 @@ import {FC, useEffect, useState} from "react";
 import movieService from "@/services/movieService";
 import './page.css';
 import Link from "next/link";
+import Rating from '@mui/material/Rating';
 
 const page: FC<MoviePageProps> = ({params}) => {
     const [selectedMovie, setSelectedMovie] = useState<IMovie | undefined>();
     const [actors, setActors] = useState<IActor[] | undefined>([])
+    const [ratingValue, setRatingValue] = useState<number>(0)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,13 +28,29 @@ const page: FC<MoviePageProps> = ({params}) => {
                 {selectedMovie ? (
                     <>
                         <div className="movie-image">
-                            <img
-                                src={"https://image.tmdb.org/t/p/original/" + selectedMovie.poster_path}
-                                alt={selectedMovie.title}
-                            />
+                            {selectedMovie.poster_path ? (
+                                <img
+                                    src={"https://image.tmdb.org/t/p/original/" + selectedMovie.poster_path}
+                                    alt={selectedMovie.title}
+                                />
+
+                            ) : (
+                                <img
+                                    src={"/default-movie-poster.png"}
+                                    alt={selectedMovie.title}
+                                />
+                            )}
                         </div>
                         <div className="movie-info">
                             <h2>{selectedMovie.title}</h2>
+                            <Rating
+                                name="simple-controlled"
+                                value={ratingValue ?? 0}
+                                max={10}
+                                onChange={(event, newValue) => {
+                                    setRatingValue(newValue ?? 0);
+                                }}
+                            />
                             <p>Average Rating: {selectedMovie.vote_average}</p>
                             <p>Average Votes: {selectedMovie.vote_count}</p>
                             <p>Original Language: {selectedMovie.original_language}</p>
