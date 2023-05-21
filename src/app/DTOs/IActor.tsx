@@ -11,6 +11,7 @@ interface IActor {
     character: string;
     credit_id: string;
     order: number;
+    biography: string;
 }
 
 interface CastData {
