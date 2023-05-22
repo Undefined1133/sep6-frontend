@@ -37,9 +37,10 @@ jobs:
         run: |
           docker push gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
       - name: Fetch secret from Google Cloud Secret Manager
+        id: get-secret
         run: |
-            export SECRET_VALUE=$(gcloud secrets versions access latest --secret="DB_API")
-            echo "::set-env name=DB_API::$SECRET_VALUE"
+          export SECRET_VALUE=$(gcloud secrets versions access latest --secret="your-secret-name")
+          echo "DB_API=$SECRET_VALUE" >> $GITHUB_ENV
       - name: Deploy
         run: |
           gcloud run deploy $REPO_NAME \
