@@ -46,7 +46,7 @@ const page: FC<MoviePageProps> = ({params}) => {
                             <Rating
                                 name="simple-controlled"
                                 value={ratingValue ?? 0}
-                                max={10}
+                                max={5}
                                 onChange={(event, newValue) => {
                                     setRatingValue(newValue ?? 0);
                                 }}
