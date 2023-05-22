@@ -28,7 +28,7 @@ jobs:
       - name: Fetch secret value from Google Cloud Secret Manager
         id: fetch-secret
         run: |
-          SECRET_VALUE=$(gcloud secrets versions access latest --secret="DB_API")
+          SECRET_VALUE=$(gcloud secrets versions access latest --secret="DB_API" --project=[PROJECT_ID])
           echo "::set-output name=secret_value::$SECRET_VALUE"
 
       - name: Set secret value as an environment variable
