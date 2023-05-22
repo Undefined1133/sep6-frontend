@@ -32,8 +32,7 @@ jobs:
           echo "::set-output name=secret_value::$SECRET_VALUE"
 
       - name: Set secret value as an environment variable
-        run: echo "DB_API=${{ steps.fetch-secret.outputs.secret_value }}" >> $GITHUB_ENV
-             echo "DB_API=${{ steps.fetch-secret.outputs.secret_value }}" >> .env
+        run: echo "DB_API=${{ steps.fetch-secret.outputs.secret_value }}" >> .env
 
       - name: Authorize Docker push
         run: gcloud auth configure-docker
