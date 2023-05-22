@@ -36,6 +36,10 @@ jobs:
       - name: Push the image to the Google Container Registry (GCR)
         run: |
           docker push gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
+      - name: Fetch secret from Google Cloud Secret Manager
+        run: |
+            export SECRET_VALUE=$(gcloud secrets versions access latest --secret="DB_API")
+            echo "::set-env name=DB_API::$SECRET_VALUE"
       - name: Deploy
         run: |
           gcloud run deploy $REPO_NAME \
