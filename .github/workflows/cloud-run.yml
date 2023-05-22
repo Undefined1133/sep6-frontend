@@ -18,14 +18,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        # Authenticate with GC
-      - id: "auth"
-        uses: "google-github-actions/auth@v0"
-        with:
-          credentials_json: "${{ secrets.CLOUD_RUN_SERVICE_ACCOUNT }}"
-      # Setup gcloud CLI/SDK
-      - name: Set up Cloud SDK
+
+      - name: Set up gcloud CLI
         uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
+          service_account_key: ${{ secrets.CLOUD_RUN_SERVICE_ACCOUNT }}
+
+      - name: Fetch secret value from Google Cloud Secret Manager
+        id: fetch-secret
+        run: |
+          SECRET_VALUE=$(gcloud secrets versions access latest --secret="DB_API")
+          echo "::set-output name=secret_value::$SECRET_VALUE"
+
+      - name: Set secret value as an environment variable
+        run: echo "DB_API=${{ steps.fetch-secret.outputs.secret_value }}" >> $GITHUB_ENV
 
       - name: Authorize Docker push
         run: gcloud auth configure-docker
@@ -33,14 +40,11 @@ jobs:
       - name: Build and tag the docker image
         run: |
           docker build . --tag gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
+
       - name: Push the image to the Google Container Registry (GCR)
         run: |
           docker push gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
-      - name: Fetch secret from Google Cloud Secret Manager
-        id: get-secret
-        run: |
-          export SECRET_VALUE=$(gcloud secrets versions access latest --secret="DB_API")
-          echo "DB_API=$SECRET_VALUE" >> $GITHUB_ENV
+
       - name: Deploy
         run: |
           gcloud run deploy $REPO_NAME \
