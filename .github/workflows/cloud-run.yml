@@ -39,7 +39,7 @@ jobs:
       - name: Fetch secret from Google Cloud Secret Manager
         id: get-secret
         run: |
-          export SECRET_VALUE=$(gcloud secrets versions access latest --secret="your-secret-name")
+          export SECRET_VALUE=$(gcloud secrets versions access latest --secret="DB_API")
           echo "DB_API=$SECRET_VALUE" >> $GITHUB_ENV
       - name: Deploy
         run: |
