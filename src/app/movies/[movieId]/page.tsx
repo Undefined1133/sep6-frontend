@@ -1,14 +1,17 @@
 "use client";
-import {FC, useEffect, useState} from "react";
+import React, { FC, useEffect, useState } from "react";
 import movieService from "@/services/movieService";
 import './page.css';
 import Link from "next/link";
 import Rating from '@mui/material/Rating';
+import Button from '@mui/material/Button';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-const page: FC<MoviePageProps> = ({params}) => {
+const Page: FC<MoviePageProps> = ({ params }) => {
     const [selectedMovie, setSelectedMovie] = useState<IMovie | undefined>();
-    const [actors, setActors] = useState<IActor[] | undefined>([])
-    const [ratingValue, setRatingValue] = useState<number>(0)
+    const [actors, setActors] = useState<IActor[] | undefined>([]);
+    const [ratingValue, setRatingValue] = useState<number>(0);
+    const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,6 +23,15 @@ const page: FC<MoviePageProps> = ({params}) => {
 
         fetchData().then(r => console.log(r));
     }, []);
+
+    const handleFavoriteClick = () => {
+        setIsFavorite(prevIsFavorite => !prevIsFavorite);
+        if (isFavorite) {
+            console.log("NOT FAVORITE");
+        } else {
+            console.log("FAVORITE");
+        }
+    };
 
     return (
         <div className="container">
@@ -33,13 +45,23 @@ const page: FC<MoviePageProps> = ({params}) => {
                                     src={"https://image.tmdb.org/t/p/original/" + selectedMovie.poster_path}
                                     alt={selectedMovie.title}
                                 />
-
                             ) : (
                                 <img
                                     src={"/default-movie-poster.png"}
                                     alt={selectedMovie.title}
                                 />
                             )}
+                            <div className="favorite-button-container">
+                                <Button
+                                    className="add-to-favorites-button"
+                                    variant={isFavorite ? "contained" : "outlined"}
+                                    color={"error"}
+                                    onClick={handleFavoriteClick}
+                                    startIcon={<FavoriteIcon />}
+                                >
+                                    {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+                                </Button>
+                            </div>
                         </div>
                         <div className="movie-info">
                             <h2>{selectedMovie.title}</h2>
@@ -71,13 +93,12 @@ const page: FC<MoviePageProps> = ({params}) => {
                                 <li className="star-item" key={actor.id}>
                                     {actor.profile_path ? (
                                         <>
-                                            <img src={"https://image.tmdb.org/t/p/original/" + actor.profile_path}
-                                                 alt={actor.name}/>
+                                            <img src={"https://image.tmdb.org/t/p/original/" + actor.profile_path} alt={actor.name} />
                                             <span className="star-name">{actor.name}</span>
                                         </>
                                     ) : (
                                         <>
-                                            <img src={"/default_pfp.png"} alt={actor.name}/>
+                                            <img src={"/default_pfp.png"} alt={actor.name} />
                                             <span className="star-name">{actor.name}</span>
                                         </>
                                     )}
@@ -93,4 +114,4 @@ const page: FC<MoviePageProps> = ({params}) => {
     );
 };
 
-export default page;
+export default Page;
