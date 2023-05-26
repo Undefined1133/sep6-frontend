@@ -5,12 +5,12 @@ import userService from "@/services/userService";
 import Link from "next/link";
 
 const LoginPage = () => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
 
     const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value);
+        setUsername(e.target.value);
     };
 
     const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +20,7 @@ const LoginPage = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await userService.login(email, password);
+            const response = await userService.login(username, password);
             console.log('Response:', response);
         } catch (error) {
             console.error('Error:', error);
@@ -33,8 +33,8 @@ const LoginPage = () => {
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <div className="input-container">
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" id="email" value={email} onChange={handleEmailChange} />
+                    <label htmlFor="username">Username:</label>
+                    <input type="username" id="username" value={username} onChange={handleEmailChange} />
                 </div>
                 <div className="input-container">
                     <label htmlFor="password">Password:</label>
