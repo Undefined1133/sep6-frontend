@@ -13,4 +13,5 @@ interface IMovie {
     video: boolean;
     vote_average: number;
     vote_count: number;
+    isFavorite: boolean;
 }

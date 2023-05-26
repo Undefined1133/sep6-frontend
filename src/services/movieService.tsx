@@ -23,7 +23,7 @@ class MovieService {
 
     async getMoviesByName(name: string) {
         try {
-            const response = await axios.get(`${process.env.DB_API}/movie/get5MoviesBySearch/${name}`);
+            const response = await axios.get(`${process.env.DB_API}/movie/get20MoviesBySearch/${name}`);
 
             return response.data;
         } catch (error) {

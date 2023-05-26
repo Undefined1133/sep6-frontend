@@ -6,6 +6,7 @@ import Link from "next/link";
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import userService from "@/services/userService";
 
 const Page: FC<MoviePageProps> = ({ params }) => {
     const [selectedMovie, setSelectedMovie] = useState<IMovie | undefined>();
@@ -19,17 +20,36 @@ const Page: FC<MoviePageProps> = ({ params }) => {
             setSelectedMovie(fetchedMovie);
             const fetchedActors = await movieService.getActorsByMovieId(params.movieId);
             setActors(fetchedActors);
+            if(userService.getCurrentUser() != null && userService.getCurrentUser().userId != 0) {
+                const fetchedIsFavorite = await userService.isFavoriteMovie(userService.getCurrentUser().userId, fetchedMovie?.id);
+                setIsFavorite(fetchedIsFavorite)
+            }
         };
 
         fetchData().then(r => console.log(r));
     }, []);
 
-    const handleFavoriteClick = () => {
+
+    const handleFavoriteClick = async () => {
+        if (userService.getCurrentUser() == null || userService.getCurrentUser().userId == 0) {
+            throw new Error("You need to log in to add a movie to your list of favorites")
+        }
         setIsFavorite(prevIsFavorite => !prevIsFavorite);
+
         if (isFavorite) {
-            console.log("NOT FAVORITE");
+            const favoriteMovie: IFavoriteMovie = {
+                userId: userService.getCurrentUser().userId,
+                movieId: selectedMovie?.id,
+                favorite: 0,
+            };
+            var response = await userService.setFavoriteMovie(favoriteMovie)
         } else {
-            console.log("FAVORITE");
+            const favoriteMovie: IFavoriteMovie = {
+                userId: userService.getCurrentUser().userId,
+                movieId: selectedMovie?.id,
+                favorite: 1,
+            };
+            var response = await userService.setFavoriteMovie(favoriteMovie)
         }
     };
 
@@ -42,7 +62,7 @@ const Page: FC<MoviePageProps> = ({ params }) => {
                         <div className="movie-image">
                             {selectedMovie.poster_path ? (
                                 <img
-                                    src={"https://image.tmdb.org/t/p/original/" + selectedMovie.poster_path}
+                                    src={"https://image.tmdb.org/t/p/w500/" + selectedMovie.poster_path}
                                     alt={selectedMovie.title}
                                 />
                             ) : (
@@ -68,7 +88,7 @@ const Page: FC<MoviePageProps> = ({ params }) => {
                             <Rating
                                 name="simple-controlled"
                                 value={ratingValue ?? 0}
-                                max={5}
+                                max={10}
                                 onChange={(event, newValue) => {
                                     setRatingValue(newValue ?? 0);
                                 }}
@@ -93,7 +113,7 @@ const Page: FC<MoviePageProps> = ({ params }) => {
                                 <li className="star-item" key={actor.id}>
                                     {actor.profile_path ? (
                                         <>
-                                            <img src={"https://image.tmdb.org/t/p/original/" + actor.profile_path} alt={actor.name} />
+                                            <img src={"https://image.tmdb.org/t/p/w500/" + actor.profile_path} alt={actor.name} />
                                             <span className="star-name">{actor.name}</span>
                                         </>
                                     ) : (

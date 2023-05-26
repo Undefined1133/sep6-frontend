@@ -29,7 +29,7 @@ const page: FC<ActorPageProps> = ({params}) => {
                     <div className="actor-image">
                         {selectedActor.profile_path ? (
                             <>
-                                <img src={"https://image.tmdb.org/t/p/original/" + selectedActor.profile_path}
+                                <img src={"https://image.tmdb.org/t/p/w500/" + selectedActor.profile_path}
                                      alt={selectedActor.name}/>
                             </>
                         ) : (
@@ -59,7 +59,7 @@ const page: FC<ActorPageProps> = ({params}) => {
                             <li className="starred-movie-item" key={movie.id}>
                                 {movie.poster_path ? (
                                     <>
-                                        <img src={"https://image.tmdb.org/t/p/original/" + movie.poster_path}
+                                        <img src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path}
                                              alt={movie.title}/>
                                         <h3 className="starred-movie-title">{movie.title}</h3>
                                     </>

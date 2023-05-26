@@ -1,0 +1,122 @@
+.current-user-container {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #D3D3D3;
+    position: relative;
+    margin-top: 75px;
+}
+
+.current-user-details-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+}
+
+.add-to-favorites-button {
+    width: 150px;
+}
+
+.favorite-movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.favorite-movies-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.favorite-movies-container h3 {
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+.movie-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.favorite-movie-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #d3d3d3;
+    font-size: 14px;
+    width: 240px;
+    text-align: center;
+}
+
+.favorite-movie-item img {
+    min-width: 100px;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+
+.favorite-movie-title {
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 5px;
+    width: 100%;
+    max-width: 150px;
+    text-align: center;
+}
+
+
+
+.button-container {
+    margin-top: 10px;
+}
+
+.profile-image {
+    justify-self: start;
+}
+
+.profile-image img {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 100%;
+}
+
+.profile-info h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.profile-info p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}

@@ -28,6 +28,7 @@ const LoginPage = () => {
         try {
             const response = await userService.register(email, password, username);
             console.log('Response:', response);
+            window.location.href = "/movies";
         } catch (error) {
             console.error('Error:', error);
         }
@@ -36,7 +37,7 @@ const LoginPage = () => {
     return (
         <div className="container">
             <Link href="/" className="back-button">{"< Back"}</Link>
-            <h1>Login</h1>
+            <h1>Register</h1>
             <form onSubmit={handleSubmit}>
                 <div className="input-container">
                     <label htmlFor="email">Email:</label>
