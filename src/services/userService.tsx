@@ -45,6 +45,27 @@ class UserService {
             });
     }
 
+    setMovieRating(movieRating: IMovieRating) {
+        return axios
+            .post(`${process.env.DB_API}user/setMovieRating`, movieRating)
+            .then((response) => {
+                return response.data;
+            })
+            .catch((error) => {
+                throw new Error('Setting rating for movie failed');
+            });
+    }
+    getMovieRating(userId: number, movieId: number) {
+        return axios
+            .get(`${process.env.DB_API}user/getMovieRating/${userId}/${movieId}`)
+            .then((response) => {
+                return response.data;
+            })
+            .catch((error) => {
+                throw new Error('Fetching movies rating failed');
+            });
+    }
+
     setFavoriteMovie(favoriteMovie: IFavoriteMovie) {
         return axios
             .post(`${process.env.DB_API}user/setFavoriteMovie`, favoriteMovie)

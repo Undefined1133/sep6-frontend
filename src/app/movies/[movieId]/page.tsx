@@ -23,9 +23,10 @@ const Page: FC<MoviePageProps> = ({ params }) => {
             if(userService.getCurrentUser() != null && userService.getCurrentUser().userId != 0) {
                 const fetchedIsFavorite = await userService.isFavoriteMovie(userService.getCurrentUser().userId, fetchedMovie?.id);
                 setIsFavorite(fetchedIsFavorite)
+                const fetchedRating = await userService.getMovieRating(userService.getCurrentUser().userId, fetchedMovie?.id);
+                setRatingValue(fetchedRating);
             }
         };
-
         fetchData().then(r => console.log(r));
     }, []);
 
@@ -52,6 +53,23 @@ const Page: FC<MoviePageProps> = ({ params }) => {
             var response = await userService.setFavoriteMovie(favoriteMovie)
         }
     };
+
+    const handleSetRating = async (rating: number) => {
+        if (userService.getCurrentUser() == null || userService.getCurrentUser().userId == 0) {
+            throw new Error("You need to log in to add a rating to the movie")
+        }
+        setRatingValue(rating);
+
+            const movieRating: IMovieRating = {
+                userId: userService.getCurrentUser().userId,
+                movieId: selectedMovie?.id,
+                rating: rating,
+            };
+
+            var response = await userService.setMovieRating(movieRating)
+        }
+
+
 
     return (
         <div className="container">
@@ -90,7 +108,7 @@ const Page: FC<MoviePageProps> = ({ params }) => {
                                 value={ratingValue ?? 0}
                                 max={10}
                                 onChange={(event, newValue) => {
-                                    setRatingValue(newValue ?? 0);
+                                    handleSetRating(newValue ?? 0);
                                 }}
                             />
                             <p>Average Rating: {selectedMovie.vote_average}</p>
