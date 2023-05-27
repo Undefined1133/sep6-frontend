@@ -67,7 +67,7 @@ const MoviesPage = () => {
                     <option value="movies">Movies</option>
                     <option value="actors">Person</option>
                 </select>
-                <button className="submit-button" onClick={onSearchPressed}>
+                <button className="submit-button rounded" onClick={onSearchPressed}>
                     Search {searchType === 'movies' ? 'Movies' : 'Actors'}
                 </button>
             </div>

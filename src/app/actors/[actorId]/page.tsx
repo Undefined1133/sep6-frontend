@@ -3,11 +3,14 @@ import React, {FC, useEffect, useState} from "react";
 import Link from "next/link";
 import actorService from "@/services/actorService";
 import './page.css';
+import statisticService from "@/services/statisticService";
 
 
 const page: FC<ActorPageProps> = ({params}) => {
     const [selectedActor, setSelectedActor] = useState<IActor | undefined>();
     const [movies, setMovies] = useState<IMovie[]>([]);
+    const [popularity, setPopularity] = useState<number>(0);
+
 
 
     useEffect(() => {
@@ -16,6 +19,8 @@ const page: FC<ActorPageProps> = ({params}) => {
             setSelectedActor(fetchedActor);
             const fetchedMovies = await actorService.getMoviesByActorId(params.actorId);
             setMovies(fetchedMovies);
+            const actorsPopularity = await statisticService.getAverageRatingForActorsMovie(params.actorId);
+            setPopularity(actorsPopularity)
         };
 
         fetchData().then(r => console.log(r));
@@ -41,7 +46,7 @@ const page: FC<ActorPageProps> = ({params}) => {
                     </div>
                     <div className="actor-info">
                         <h2>{selectedActor.name || 'N/A'}</h2>
-                        <p>Popularity: {selectedActor.popularity || 'N/A'}</p>
+                        <p>Popularity: {popularity.toFixed(2) + "/10" || 'N/A'}</p>
                         <p>Known for department: {selectedActor.known_for_department || 'N/A'}</p>
                         <p>Biography: {selectedActor.biography || 'N/A'}</p>
                     </div>

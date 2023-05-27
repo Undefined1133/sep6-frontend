@@ -6,7 +6,8 @@ class UserService {
         return axios
             .get(`${process.env.DB_API}user/login/${username}/${password}`)
             .then((response) => {
-                const userData = response.data;
+                const { userId, username, email } = response.data;
+                const userData = { userId, username, email };
                 if (typeof window !== 'undefined') {
                     localStorage.setItem('user', JSON.stringify(userData));
                 }
@@ -22,7 +23,8 @@ class UserService {
         return axios
             .post(`${process.env.DB_API}user/postCreateUser/${username}/${email}/${password}`)
             .then((response) => {
-                const userData = response.data;
+                const { userId, username, email } = response.data;
+                const userData = { userId, username, email };
                 if (typeof window !== 'undefined') {
                     localStorage.setItem('user', JSON.stringify(userData));
                 }
