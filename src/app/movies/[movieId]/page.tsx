@@ -7,11 +7,13 @@ import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import userService from "@/services/userService";
+import statisticService from "@/services/statisticService";
 
 const Page: FC<MoviePageProps> = ({ params }) => {
     const [selectedMovie, setSelectedMovie] = useState<IMovie | undefined>();
     const [actors, setActors] = useState<IActor[] | undefined>([]);
     const [ratingValue, setRatingValue] = useState<number>(0);
+    const [totalRatingValue, setTotalRatingValue] = useState<number>(0);
     const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
@@ -25,6 +27,8 @@ const Page: FC<MoviePageProps> = ({ params }) => {
                 setIsFavorite(fetchedIsFavorite)
                 const fetchedRating = await userService.getMovieRating(userService.getCurrentUser().userId, fetchedMovie?.id);
                 setRatingValue(fetchedRating);
+                const fetchedTotalRating = await statisticService.getMovieTotalRatingById(fetchedMovie?.id);
+                setTotalRatingValue(fetchedTotalRating);
             }
         };
         fetchData().then(r => console.log(r));
@@ -67,6 +71,8 @@ const Page: FC<MoviePageProps> = ({ params }) => {
             };
 
             var response = await userService.setMovieRating(movieRating)
+        const fetchedTotalRating = await statisticService.getMovieTotalRatingById(selectedMovie?.id);
+        setTotalRatingValue(fetchedTotalRating);
         }
 
 
@@ -111,7 +117,7 @@ const Page: FC<MoviePageProps> = ({ params }) => {
                                     handleSetRating(newValue ?? 0);
                                 }}
                             />
-                            <p>Average Rating: {selectedMovie.vote_average}</p>
+                            <p>Average Rating: {totalRatingValue.toFixed(3)}</p>
                             <p>Average Votes: {selectedMovie.vote_count}</p>
                             <p>Original Language: {selectedMovie.original_language}</p>
                             <p>Popularity: {selectedMovie.popularity}</p>

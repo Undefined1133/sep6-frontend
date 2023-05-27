@@ -67,8 +67,8 @@
 
 .favorite-movie-item img {
     min-width: 100px;
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     margin-bottom: 5px;
 }
@@ -84,8 +84,6 @@
     max-width: 150px;
     text-align: center;
 }
-
-
 
 .button-container {
     margin-top: 10px;

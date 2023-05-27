@@ -59,8 +59,8 @@ const page: FC<ActorPageProps> = ({params}) => {
                         <img src={"/default_pfp.png"} alt="profilePicture"/>
                     </div>
                     <div className="profile-info">
-                        <p>Username: N/A</p>
-                        <p>Email: N/A</p>
+                        <p>Username: {userService.getCurrentUser().username}</p>
+                        <p>Email: {userService.getCurrentUser().email}</p>
                     </div>
                 </>
             ) : (
