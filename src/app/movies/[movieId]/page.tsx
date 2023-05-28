@@ -22,6 +22,7 @@ const Page: FC<MoviePageProps> = ({ params }) => {
             setSelectedMovie(fetchedMovie);
             const fetchedActors = await movieService.getActorsByMovieId(params.movieId);
             setActors(fetchedActors);
+            console.log(fetchedActors)
             if(userService.getCurrentUser() != null && userService.getCurrentUser().userId != 0) {
                 const fetchedIsFavorite = await userService.isFavoriteMovie(userService.getCurrentUser().userId, fetchedMovie?.id);
                 setIsFavorite(fetchedIsFavorite)
@@ -138,12 +139,14 @@ const Page: FC<MoviePageProps> = ({ params }) => {
                                     {actor.profile_path ? (
                                         <>
                                             <img src={"https://image.tmdb.org/t/p/w500/" + actor.profile_path} alt={actor.name} />
-                                            <span className="star-name">{actor.name}</span>
+                                            <span className="star-name">{actor.known_for_department}: {actor.name}</span>
+                                            <span className="star-name">Character: {actor.character}</span>
                                         </>
                                     ) : (
                                         <>
                                             <img src={"/default_pfp.png"} alt={actor.name}  />
                                             <span className="star-name">{actor.name}</span>
+                                            <span className="star-name">{actor.character}</span>
                                         </>
                                     )}
                                 </li>

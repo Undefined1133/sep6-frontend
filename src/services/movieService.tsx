@@ -11,13 +11,33 @@ class MovieService {
         }
     }
 
-    async getMostPopularSeries() {
+    async getTopRatedMovies() {
         try {
-            const response = await axios.get(`${process.env.DB_API}/series/getMostPopularSeries`);
+            const response = await axios.get(`${process.env.DB_API}/movie/getTopRatedMovies`);
 
             return response.data;
         } catch (error) {
-            throw new Error('Fetching series failed');
+            throw new Error('Fetching movies failed');
+        }
+    }
+
+    async getWeeklyTrendingMovies() {
+        try {
+            const response = await axios.get(`${process.env.DB_API}/movie/getWeeklyTrendingMovies`);
+
+            return response.data;
+        } catch (error) {
+            throw new Error('Fetching movies failed');
+        }
+    }
+
+    async getUpcomingMovies() {
+        try {
+            const response = await axios.get(`${process.env.DB_API}/movie/getUpcomingMovies`);
+
+            return response.data;
+        } catch (error) {
+            throw new Error('Fetching movies failed');
         }
     }
 
@@ -60,6 +80,7 @@ class MovieService {
             throw new Error(`Fetching actors by id: ${id} failed`);
         }
     }
+
 
 }
 
