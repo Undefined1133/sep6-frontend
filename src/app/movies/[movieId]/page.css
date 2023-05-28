@@ -1,12 +1,13 @@
 .container {
-    display: inline-table;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     width: 100%;
     background-color: #D3D3D3;
     position: relative;
-    margin-top: 50px;
+    margin-top: 5%;
 }
 
 .back-button {
@@ -56,6 +57,7 @@
 
 .star-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -66,18 +68,12 @@
 }
 
 .star-item img {
-    min-width: 100px;
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 200px;
     object-fit: cover;
-    margin-right: 5px;
+    margin-bottom: 5px;
     transition: filter 0.3s;
 }
-
-.star-item:hover img {
-    filter: brightness(70%);
-}
-
 
 .star-name {
     white-space: nowrap;
@@ -85,6 +81,11 @@
     text-overflow: ellipsis;
     font-family: "Arial", sans-serif;
     font-weight: bold;
+    text-align: center;
+}
+
+.star-item:hover img {
+    filter: brightness(70%);
 }
 
 

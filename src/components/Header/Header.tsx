@@ -25,8 +25,11 @@ const Header = () => {
             <div>
                 {currentUser ? (
                     <>
+                        <Link href="/movies/favorites" className="text-white font-bold mr-4">
+                            Favorites
+                        </Link>
                         <Link href="/actors" className="text-white font-bold mr-4">
-                           Top 20 Persons
+                            Top 20 Persons
                         </Link>
                         <Link href="/users" className="text-white font-bold mr-4">
                             Profile
@@ -37,6 +40,9 @@ const Header = () => {
                     </>
                 ) : (
                     <>
+                        <Link href="/actors" className="text-white font-bold mr-4">
+                            Top 20 Persons
+                        </Link>
                         <Link href="/login" className="text-white font-bold mr-4">
                             Log in
                         </Link>

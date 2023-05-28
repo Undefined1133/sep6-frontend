@@ -52,31 +52,38 @@
 
 .starred-movie-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-right: 10px;
     margin-bottom: 10px;
     padding: 5px 10px;
     border-radius: 4px;
     background-color: #D3D3D3;
-    font-size: 14px;
     width: 240px;
 }
 
-.starred-movie-item img {
-    min-width: 100px;
-    width: 100px;
-    height: 100px;
+.star-item img {
+    width: 100%;
+    height: auto;
     object-fit: cover;
-    margin-right: 5px;
+    margin-bottom: 5px;
+    transition: filter 0.3s;
 }
 
 .starred-movie-title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     font-family: "Arial", sans-serif;
     font-weight: bold;
+    text-align: center;
 }
+
+
+.starred-movie-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 5px;
+    transition: filter 0.3s;
+}
+
 
 
 .actor-image {
