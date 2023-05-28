@@ -1,0 +1,74 @@
+.add-to-favorites-button {
+    width: 100%;
+}
+
+.favorites-movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.favorites-movies-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.favorites-movies-container h3 {
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+.favorites-movie-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.favorites-movie-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #d3d3d3;
+    font-size: 14px;
+    width: 240px;
+    text-align: center;
+}
+
+.favorites-movie-item img {
+    min-width: 100px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+
+.favorites-movie-content:hover img {
+    filter: brightness(70%);
+}
+
+.favorites-movie-title {
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 5px;
+    width: 100%;
+    max-width: 150px;
+    text-align: center;
+}
+
+.favorites-button-container {
+    margin-top: 10px;
+}

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useEffect } from 'react';
 
 class StatisticService {
     getMovieTotalRatingById(movieId: number | undefined) {

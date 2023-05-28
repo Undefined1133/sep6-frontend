@@ -142,7 +142,7 @@ const Page: FC<MoviePageProps> = ({ params }) => {
                                         </>
                                     ) : (
                                         <>
-                                            <img src={"/default_pfp.png"} alt={actor.name} />
+                                            <img src={"/default_pfp.png"} alt={actor.name}  />
                                             <span className="star-name">{actor.name}</span>
                                         </>
                                     )}

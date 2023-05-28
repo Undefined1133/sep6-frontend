@@ -10,25 +10,6 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 const page: FC<ActorPageProps> = ({params}) => {
     const [currentUser, setCurrentUser] = useState<IUser | undefined>();
     const [movies, setMovies] = useState<IMovie[]>([]);
-    const [isFavorite, setIsFavorite] = useState(false);
-    const handleFavoriteClick = async (movie: IMovie) => {
-        if (!currentUser) {
-            throw new Error(
-                "You need to log in to add a movie to your list of favorites"
-            );
-        }
-
-        const favoriteMovie: IFavoriteMovie = {
-            userId: userService.getCurrentUser().userId,
-            movieId: movie?.id,
-            favorite: movie.isFavorite ? 0 : 1,
-        };
-
-       var response =  await userService.setFavoriteMovie(favoriteMovie);
-
-        const updatedMovies = movies.filter((m) => m.id !== movie.id);
-        setMovies(updatedMovies);
-    };
 
     useEffect(() => {
         const randomUser: IUser = {
@@ -50,6 +31,24 @@ const page: FC<ActorPageProps> = ({params}) => {
 
         fetchData().then((r) => console.log(r));
     }, []);
+    const handleFavoriteClick = async (movie: IMovie) => {
+        if (!currentUser) {
+            throw new Error(
+                "You need to log in to add a movie to your list of favorites"
+            );
+        }
+
+        const favoriteMovie: IFavoriteMovie = {
+            userId: userService.getCurrentUser().userId,
+            movieId: movie?.id,
+            favorite: movie.isFavorite ? 0 : 1,
+        };
+
+        var response =  await userService.setFavoriteMovie(favoriteMovie);
+
+        const updatedMovies = movies.filter((m) => m.id !== movie.id);
+        setMovies(updatedMovies);
+    };
 
     return <div className="current-user-container">
         <div className="current-user-details-container">
