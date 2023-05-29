@@ -6,7 +6,7 @@
     width: 100%;
     background-color: #D3D3D3;
     position: relative;
-    margin-top: 75px;
+    margin-top: 7%;
 }
 
 .back-button {
@@ -42,6 +42,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin-left: 5%;
 }
 
 .starred-movies-container h3 {
