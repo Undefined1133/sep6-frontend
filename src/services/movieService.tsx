@@ -21,6 +21,16 @@ class MovieService {
         }
     }
 
+    async getMostPopularMoviesByDecade(startDateForDecade: string, endDateForDecade: string) {
+        try {
+            const response = await axios.get(`${process.env.DB_API}/movie/MostPopularMoviesByDecade&${startDateForDecade}&${endDateForDecade}`);
+
+            return response.data;
+        } catch (error) {
+            throw new Error('Fetching movies by decade failed');
+        }
+    }
+
     async getWeeklyTrendingMovies() {
         try {
             const response = await axios.get(`${process.env.DB_API}/movie/getWeeklyTrendingMovies`);
