@@ -35,6 +35,9 @@ const Header = () => {
                         <Link href="/actors" className="text-white font-bold ml-4">
                             Top 20 Persons
                         </Link>
+                        <Link href="/movies/decade" className="text-white font-bold ml-4">
+                            Top Movies By Decade
+                        </Link>
                     </>
                 ) : (
                     <>
@@ -43,6 +46,9 @@ const Header = () => {
                         </Link>
                         <Link href="/actors" className="text-white font-bold ml-4">
                             Top 20 Persons
+                        </Link>
+                        <Link href="/movies/decade" className="text-white font-bold ml-4">
+                            Top Movies By Decade
                         </Link>
                     </>
                 )}
