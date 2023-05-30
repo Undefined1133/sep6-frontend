@@ -22,14 +22,14 @@ const Page: FC<MoviePageProps> = ({ params }) => {
             setSelectedMovie(fetchedMovie);
             const fetchedActors = await movieService.getActorsByMovieId(params.movieId);
             setActors(fetchedActors);
+            const fetchedTotalRating = await statisticService.getMovieTotalRatingById(fetchedMovie?.id);
+            setTotalRatingValue(fetchedTotalRating);
             console.log(fetchedActors)
             if(userService.getCurrentUser() != null && userService.getCurrentUser().userId != 0) {
                 const fetchedIsFavorite = await userService.isFavoriteMovie(userService.getCurrentUser().userId, fetchedMovie?.id);
                 setIsFavorite(fetchedIsFavorite)
                 const fetchedRating = await userService.getMovieRating(userService.getCurrentUser().userId, fetchedMovie?.id);
                 setRatingValue(fetchedRating);
-                const fetchedTotalRating = await statisticService.getMovieTotalRatingById(fetchedMovie?.id);
-                setTotalRatingValue(fetchedTotalRating);
             }
         };
         fetchData().then(r => console.log(r));

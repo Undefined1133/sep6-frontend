@@ -46,7 +46,7 @@ const page: FC<ActorPageProps> = ({params}) => {
                     </div>
                     <div className="actor-info">
                         <h2>{selectedActor.name || 'N/A'}</h2>
-                        <p>Popularity: {popularity.toFixed(2) + "/10" || 'N/A'}</p>
+                        <p>Average rating for movies: {popularity.toFixed(2) + "/10" || 'N/A'}</p>
                         <p>Known for department: {selectedActor.known_for_department || 'N/A'}</p>
                         <p>Biography: {selectedActor.biography || 'N/A'}</p>
                     </div>
