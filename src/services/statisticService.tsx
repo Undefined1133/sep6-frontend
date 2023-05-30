@@ -22,7 +22,6 @@ class StatisticService {
                 throw new Error('Fetching actors average popularity failed');
             });
     }
-
 }
 
 const statisticService = new StatisticService();
